@@ -22,6 +22,7 @@ group :test, :development do
   gem "rspec-rails", "~> 2.0"
   gem "spork"
   gem "autotest-rails"
+  gem "webrat"
 end
 
 gem 'jquery-rails'
