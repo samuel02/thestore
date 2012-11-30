@@ -28,7 +28,13 @@
           <a class="brand" href="/">The Store</a>
           <div class="container nav-collapse">
             <ul class="nav">
-              <li><%= link_to "Products", "/products"  %></li>
+              <% if current_admin %>
+                <li><%= link_to "Products", "/products"  %></li>
+                <li><%= link_to "New Admin", "/admin/new"  %></li>
+                <li><%= link_to "Log Out", logout_path  %></li>
+              <% else %>
+                <li><%= link_to "Log In", login_path  %></li>
+              <% end %>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
