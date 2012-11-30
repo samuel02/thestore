@@ -19,7 +19,7 @@ describe Admin do
     end
 
     it 'should require the password and the password confirmation to be equal' do
-      attributes valid_attributes.merge( :password_confirmation => '654321' )
+      attributes = valid_attributes.merge( :password_confirmation => '654321' )
       admin = Admin.new attributes
       admin.should_not be_valid
     end
