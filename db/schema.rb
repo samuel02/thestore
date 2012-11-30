@@ -21,8 +21,4 @@ ActiveRecord::Schema.define(:version => 20121108125157) do
     t.datetime "updated_at",                                :null => false
   end
 
-  create_table "test", :force => true do |t|
-    t.string "name", :limit => 20, :default => ""
-  end
-
 end
