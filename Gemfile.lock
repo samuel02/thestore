@@ -136,7 +136,7 @@ PLATFORMS
 
 DEPENDENCIES
   autotest-rails
-  bcrypt-ruby (~> 3.0.0)
+  bcrypt-ruby
   coffee-rails (~> 3.2.1)
   jquery-rails
   less-rails
