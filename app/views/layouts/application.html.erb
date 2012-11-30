@@ -27,14 +27,18 @@
           </a>
           <a class="brand" href="/">The Store</a>
           <div class="container nav-collapse">
-            <ul class="nav">
-              <% if current_admin %>
+            <% if current_admin %>
+              <ul class="nav">
                 <li><%= link_to "Products", "/products"  %></li>
                 <li><%= link_to "New Admin", "/admin/new"  %></li>
+              </ul>
+              <ul class="nav pull-right">
                 <li><%= link_to "Log Out", logout_path  %></li>
-              <% else %>
+            <% else %>
+              <ul class="nav pull-right">
                 <li><%= link_to "Log In", login_path  %></li>
-              <% end %>
+            <% end %>
+              </ul>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
