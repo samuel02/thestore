@@ -1,9 +1,13 @@
 require 'spec_helper'
 
-describe AdminController do
+describe AdminsController do
 
   def valid_attributes
-    {}
+    {
+      :email => 'test@testing.com',
+      :password => '123456',
+      :password_confirmation => '123456'
+    }
   end
 
   def valid_session
