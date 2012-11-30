@@ -9,9 +9,9 @@ class Admin < ActiveRecord::Base
   validates_uniqueness_of :email
 
   def self.authenticate(email, password)
-    user = find_by_email(email)
-    if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
-      user
+    admin = find_by_email(email)
+    if admin && admin.password_hash == BCrypt::Engine.hash_secret(password, admin.password_salt)
+      admin
     else
       nil
     end
