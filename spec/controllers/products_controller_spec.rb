@@ -10,6 +10,10 @@ describe ProductsController do
     {}
   end
 
+  before(:each) do
+    controller.stub!(:authorize_admin).and_return(true)
+  end
+
   describe "GET index" do
     it "assigns all products as @products" do
       product = Product.create! valid_attributes
