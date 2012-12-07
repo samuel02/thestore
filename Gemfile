@@ -23,6 +23,7 @@ group :test, :development do
   gem "spork"
   gem "autotest-rails"
   gem "webrat"
+  gem "factory_girl_rails", "~> 4.0"
 end
 
 gem 'jquery-rails'
