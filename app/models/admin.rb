@@ -7,6 +7,7 @@ class Admin < ActiveRecord::Base
   validates_presence_of :password, :on => :create
   validates_presence_of :email
   validates_uniqueness_of :email
+  validates_format_of :email, :with => %r/\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/
 
   def self.authenticate(email, password)
     admin = find_by_email(email)
