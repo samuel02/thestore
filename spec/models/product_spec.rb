@@ -1,5 +1,9 @@
 require 'spec_helper'
 
 describe Product do
-  pending "tests must be created!"
+
+  let(:product) { FactoryGirl.build(:product) }
+  subject(:product)
+  it { should respond_to :name }
+
 end
