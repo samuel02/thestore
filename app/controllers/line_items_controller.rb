@@ -1,14 +1,11 @@
 class LineItemsController < ApplicationController
   def create
     cart = current_cart
-    product_id = params[:product_id]
+    product = Product.find(params[:product_id])
 
-    logger.debug "current_cart = #{cart}"
+    @line_item = cart.add_product(product)
 
-    @line_item = LineItem.new
-    @line_item.cart_id = cart.id
-    @line_item.product_id = product_id
-    @line_item.amount = 1
+    logger.debug "@line_item = #{@line_item}"
 
     respond_to do |format|
       if @line_item.save
