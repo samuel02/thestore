@@ -5,4 +5,8 @@ class Product < ActiveRecord::Base
 
   has_many :line_items
 
+  def available?(amount = 1)
+    return quantity >= amount
+  end
+
 end
