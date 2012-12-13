@@ -23,6 +23,10 @@ class OrdersController < ApplicationController
     @order = Order.new
     @cart = current_cart
 
+    if @cart.line_items.size <= 0
+      redirect_to root_path, notice: 'You have no products in cart.' and return
+    end
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @order }
