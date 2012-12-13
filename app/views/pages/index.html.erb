@@ -11,7 +11,8 @@
           <p><%= truncate product.description %></p>
           <div class="form-actions">
             <a class="btn">More info</a>
-            <a class="btn btn-primary">Add to cart</a>
+
+            <%= link_to "Add to cart", line_items_path(:product_id => product), :method => 'post', :class => "btn btn-primary" %>
           </div>
         </div>
       <% end %>
@@ -20,6 +21,20 @@
   <div class="span3 sidebar">
     <div class="well">
       <h3>Cart</h3>
+      <table class="table">
+        <tr>
+          <th>Product</th>
+          <th>Amount</th>
+          <th>Price</th>
+        </tr>
+        <% @cart.line_items.each do |line_item| %>
+          <tr>
+            <td><%= line_item.product.name %></td>
+            <td><%= line_item.amount %></td>
+            <td><%= line_item.product.price %></td>
+          </tr>
+        <% end %>
+      </table>
     </div>
   </div>
 </div>

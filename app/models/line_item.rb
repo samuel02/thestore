@@ -6,5 +6,6 @@ class LineItem < ActiveRecord::Base
                         :product_id
 
   belongs_to :cart
+  belongs_to :product
 
 end
