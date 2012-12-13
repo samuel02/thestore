@@ -9,13 +9,10 @@ describe Admin do
 
   context "validations" do
 
-    it 'should require an emailadress' do
-      FactoryGirl.build(:admin, :email => '').should_not be_valid
-    end
+    it { should validate_presence_of :password }
+    it { should validate_confirmation_of :password }
 
-    it 'should require the password and the password confirmation to be equal' do
-      FactoryGirl.build(:admin, :password_confirmation => '12').should_not be_valid
-    end
+    it { should validate_presence_of :email }
 
     it 'should require a (somewhat) valid emailadress' do
       FactoryGirl.build(:admin, :email => 'samuel').should_not be_valid
