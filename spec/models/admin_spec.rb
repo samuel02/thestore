@@ -2,39 +2,23 @@ require 'spec_helper'
 
 describe Admin do
 
-  def valid_attributes
-    {
-      :email => 'test@testing.com',
-      :password => '123456',
-      :password_confirmation => '123456'
-    }
+  it 'should be possible to authenticate an admin' do
+    admin = FactoryGirl.create(:admin)
+    Admin.authenticate(admin.email, '123456').should == admin
   end
 
-  describe "validations" do
+  context "validations" do
 
     it 'should require an emailadress' do
-      attributes = valid_attributes.merge( :email => '' )
-      admin = Admin.new attributes
-      admin.should_not be_valid
+      FactoryGirl.build(:admin, :email => '').should_not be_valid
     end
 
     it 'should require the password and the password confirmation to be equal' do
-      attributes = valid_attributes.merge( :password_confirmation => '654321' )
-      admin = Admin.new attributes
-      admin.should_not be_valid
+      FactoryGirl.build(:admin, :password_confirmation => '12').should_not be_valid
     end
 
     it 'should require a (somewhat) valid emailadress' do
-      attributes = valid_attributes.merge( :email => 'test' )
-      admin = Admin.new attributes
-      admin.should_not be_valid
+      FactoryGirl.build(:admin, :email => 'samuel').should_not be_valid
     end
-
   end
-
-  it 'should be possible to authenticate an admin' do
-    admin = Admin.create! valid_attributes
-    Admin.authenticate('test@testing.com', '123456').should == admin
-  end
-
 end
