@@ -7,6 +7,7 @@ class LineItem < ActiveRecord::Base
 
   belongs_to :cart
   belongs_to :product
+  belongs_to :order
 
   def price
     product.price * amount
