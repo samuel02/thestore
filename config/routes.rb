@@ -1,4 +1,6 @@
 Thestore::Application.routes.draw do
+
+  resources :line_items, :only => [:create, :destroy]
   resources :products
   resources :admins, :only => [:new, :create]
   resources :sessions
