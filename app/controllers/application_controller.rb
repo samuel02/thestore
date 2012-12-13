@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  helper_method :current_admin, :authorize_admin
+  helper_method :current_admin, :authorize_admin, :current_cart
 
   private
 
@@ -12,5 +12,16 @@ class ApplicationController < ActionController::Base
 
   def current_admin
     @current_admin ||= Admin.find(session[:admin_id]) if session[:admin_id]
+  end
+
+  def current_cart
+    begin
+      cart = Cart.find(session[:cart_id])
+    rescue ActiveRecord::RecordNotFound
+      cart = Cart.create
+      session[:cart_id] = cart.id
+    end
+
+    cart
   end
 end

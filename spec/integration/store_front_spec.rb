@@ -10,4 +10,8 @@ describe 'store front as customer' do
     assert_contain "Cart"
   end
 
+  it 'should be possible to add a product to cart' do
+
+  end
+
 end
