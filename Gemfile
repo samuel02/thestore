@@ -25,8 +25,8 @@ group :test, :development do
   gem "webrat"
   gem "factory_girl_rails", "~> 4.0"
   gem 'shoulda-matchers'
+  gem 'rails-footnotes', '>= 3.7.5.rc4'
 end
-
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
