@@ -82,12 +82,4 @@ class ProductsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-  private
-
-    def authorize_admin
-      unless current_admin
-        redirect_to login_path
-      end
-    end
 end

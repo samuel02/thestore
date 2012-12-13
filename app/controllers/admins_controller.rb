@@ -1,4 +1,5 @@
 class AdminsController < ApplicationController
+  before_filter :authorize_admin
 
   def new
     @admin = Admin.new

@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe AdminsController do
 
+  before(:each) do
+    controller.stub!(:authorize_admin).and_return(true)
+  end
+
   def valid_attributes
     {
       :email => 'test@testing.com',
