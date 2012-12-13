@@ -1,5 +1,7 @@
 Thestore::Application.routes.draw do
 
+  resources :orders
+
   resources :line_items, :only => [:create, :destroy]
   resources :products
   resources :admins, :only => [:new, :create]
