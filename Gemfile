@@ -26,6 +26,7 @@ group :test, :development do
   gem "factory_girl_rails", "~> 4.0"
   gem 'shoulda-matchers'
   gem 'rails-footnotes', '>= 3.7.5.rc4'
+  gem 'quiet_assets', :group => :development
 end
 gem 'jquery-rails'
 
