@@ -1,36 +1,35 @@
-<%- model_class = Product -%>
 <div class="page-header">
-  <h1><%= model_class.model_name.human.pluralize %></h1>
+  <h1>Products</h1>
 </div>
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:description) %></th>
-      <th><%= model_class.human_attribute_name(:price) %></th>
-      <th><%= model_class.human_attribute_name(:quantity) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <% @products.each do |product| %>
       <tr>
-        <td><%= link_to product.id, product_path(product) %></td>
-        <td><%= product.name %></td>
-        <td><%= product.description %></td>
-        <td><%= product.price %></td>
+        <td><%= product.id %></td>
+        <td><%= link_to product.name, product_path(product) %></td>
+        <td><%= truncate(product.description) %></td>
+        <td><%= number_to_currency(product.price) %></td>
         <td><%= product.quantity %></td>
-        <td><%=l product.created_at %></td>
         <td>
-          <%= link_to "Edit",
+          <div class="btn-group pull-right">
+            <%= link_to raw("<i class=\"icon-pencil\"></i>"),
                       edit_product_path(product), :class => 'btn btn-mini' %>
-          <%= link_to "Remove",
+            <%= link_to raw("<i class=\"icon-remove\"></i>"),
                       product_path(product),
                       :method => :delete,
                       :data => { :confirm => 'Are you sure?' },
                       :class => 'btn btn-mini btn-danger' %>
+          </div>
         </td>
       </tr>
     <% end %>
