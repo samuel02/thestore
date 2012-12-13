@@ -8,4 +8,7 @@ class LineItem < ActiveRecord::Base
   belongs_to :cart
   belongs_to :product
 
+  def price
+    product.price * amount
+  end
 end
