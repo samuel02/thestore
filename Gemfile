@@ -24,6 +24,7 @@ group :test, :development do
   gem "autotest-rails"
   gem "webrat"
   gem "factory_girl_rails", "~> 4.0"
+  gem 'shoulda-matchers'
 end
 
 gem 'jquery-rails'
