@@ -30,18 +30,26 @@
             <th>Product</th>
             <th>Amount</th>
             <th>Price</th>
+            <th></th>
           </tr>
           <% @cart.line_items.each do |line_item| %>
             <tr>
               <td><%= line_item.product.name %></td>
               <td><%= line_item.amount %></td>
               <td><%= number_to_currency(line_item.price) %></td>
+              <td>
+                <%= link_to raw("<i class=\"icon-remove\"></i>"),
+                            line_item_path(line_item),
+                            :method => 'delete',
+                            :class => "" %>
+              </td>
             </tr>
           <% end %>
           <tr>
             <td></td>
             <td><strong>Total</strong></td>
             <td><%= number_to_currency(@cart.total_price) %></td>
+            <td></td>
           </tr>
         </table>
         <hr>

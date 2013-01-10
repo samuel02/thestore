@@ -1,21 +1,38 @@
 class LineItemsController < ApplicationController
+  before_filter :init_cart
+
   def create
-    cart = current_cart
     product = Product.find(params[:product_id])
-
-    @line_item = cart.add_product(product)
-
-    logger.debug "@line_item = #{@line_item}"
+    @line_item = @cart.add_product(product)
 
     respond_to do |format|
-      if @line_item.save
-        format.html { redirect_to :root }
-      else
-        format.html { redirect_to :root }
-      end
+      @line_item.save
+      format.html { redirect_to :root }
     end
   end
 
   def destroy
+    product = Product.find(LineItem.find(params[:id]).product)
+    logger.info "product = #{product.inspect}"
+
+    @line_item = @cart.remove_product(product)
+
+    logger.info "@line_item = #{@line_item.inspect}"
+
+    if @line_item.amount <= 0
+      @line_item.destroy
+    else
+      @line_item.save
+    end
+
+    respond_to do |format|
+      format.html { redirect_to :root }
+    end
+  end
+
+  private
+
+  def init_cart
+    @cart = current_cart
   end
 end
