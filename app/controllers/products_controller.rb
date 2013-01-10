@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_filter :authorize_admin
+  before_filter :authorize_admin, :except => :show
 
   # GET /products
   # GET /products.json
@@ -17,9 +17,16 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @product }
+    if @current_admin
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @product }
+      end
+    else
+      @cart = current_cart
+      respond_to do |format|
+        format.html { render "pages/show_product" }
+      end
     end
   end
 

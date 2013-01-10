@@ -1,29 +1,36 @@
 <div class="page-header">
-  <h1>Welcome to The Store!</h1>
+  <h1>
+    <%= link_to "The Store", root_path %> -
+    <%= @product.name %>
+  </h1>
 </div>
 
 <div class="row">
-  <div class="span8 products-display">
+  <div class="span8 product-display">
     <div class="row">
-      <% @products.each_with_index do |product, index| %>
-        <div class="span4">
-          <h3><%= product.name %> <small><%= number_to_currency(product.price) %></small></h3>
-          <% unless product.image_url.nil? %>
-            <img src="<%= product.image_url %>">
-          <% end %>
-          <p><%= truncate product.description %></p>
-          <div class="form-actions">
-            <%= link_to "More info",
-                        product_path(product),
-                        :class => "btn" %>
-
-            <%= link_to "Add to cart",
-                        line_items_path(:product_id => product),
-                        :method => 'post',
-                        :class => "btn btn-primary" %>
-          </div>
+      <div class="span4">
+        <h3 style="margin-top:0px">Description</h3>
+        <p><%= @product.description %></p>
+        <p>
+          <strong>Price:</strong> <%= number_to_currency @product.price %>
+        </p>
+      </div>
+      <div class="span4">
+        <img src="<%= @product.image_url %>">
+      </div>
+    </div>
+    <div class="row">
+      <div class="span8">
+        <div class="form-actions">
+          <%= link_to "Back",
+                      root_path,
+                      :class => "btn" %>
+          <%= link_to "Add to cart",
+                      line_items_path(:product_id => @product),
+                      :method => 'post',
+                      :class => "btn btn-primary" %>
         </div>
-      <% end %>
+      </div>
     </div>
   </div>
   <div class="span4 sidebar">
