@@ -46,7 +46,7 @@
                 </li>
                 <% if @current_user && @current_user.customer? %>
                   <li>
-                    <%= link_to "Orders", orders_path %>
+                    <%= link_to "My account", customer_path(@current_user) %>
                   </li>
                 <% end %>
               </ul>

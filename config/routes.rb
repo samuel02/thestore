@@ -7,7 +7,7 @@ Thestore::Application.routes.draw do
   resources :products
   resources :admins, :only => [:new, :create]
   resources :sessions
-  resources :customers, :only => [:index, :create]
+  resources :customers, :only => [:index, :create, :show, :update]
 
   get "login" => "sessions#new", :as => "login"
   get "logout" => "sessions#destroy", :as => "logout"
