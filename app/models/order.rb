@@ -29,4 +29,8 @@ class Order < ActiveRecord::Base
       item.cart_id = nil
     end
   end
+
+  def total_price
+    line_items.sum(&:price)
+  end
 end

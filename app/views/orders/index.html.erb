@@ -27,7 +27,7 @@
         <td><%= order.postal_code %></td>
         <td><%= order.city %></td>
         <td><%= order.line_items.count %></td>
-        <td>price</td>
+        <td><%= number_to_currency(order.total_price) %></td>
         <td>
           <div class="btn-group pull-right">
             <%= link_to raw("<i class=\"icon-eye-open\"></i>"),
