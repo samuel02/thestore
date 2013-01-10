@@ -16,6 +16,7 @@ class Order < ActiveRecord::Base
   attr_accessible :customer_id
   has_many :line_items, :dependent => :destroy
   belongs_to :customer
+  after_commit :update_product_quantity, :on => :create
 
   validates_presence_of :customer_id
   validates_with AvailabilityValidator
@@ -29,6 +30,15 @@ class Order < ActiveRecord::Base
 
   def total_price
     line_items.sum(&:price)
+  end
+
+  private
+
+  def update_product_quantity
+    line_items.each do |item|
+      product = Product.find(item.product)
+      product.decrement!(:quantity, item.amount)
+    end
   end
 
 end
