@@ -1,31 +1,74 @@
-<%- model_class = Order -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+  <h1>Order <%= @order.id %></h1>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:first_name) %>:</strong></dt>
-  <dd><%= @order.first_name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:last_name) %>:</strong></dt>
-  <dd><%= @order.last_name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
-  <dd><%= @order.email %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:adress) %>:</strong></dt>
-  <dd><%= @order.adress %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:postal_code) %>:</strong></dt>
-  <dd><%= @order.postal_code %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:city) %>:</strong></dt>
-  <dd><%= @order.city %></dd>
-</dl>
+<div class="row">
+  <div class="span6">
+    <div class="well">
+      <h3>Customer info</h3>
+      <table class="table table-striped">
+        <tr>
+          <td><strong>First name</strong></td>
+          <td><%= @order.first_name %></td>
+        </tr>
+        <tr>
+          <td><strong>Last name</strong></td>
+          <td><%= @order.last_name %></td>
+        </tr>
+        <tr>
+          <td><strong>Email</strong></td>
+          <td><%= @order.email %></td>
+        </tr>
+        <tr>
+          <td><strong>Address</strong></td>
+          <td><%= @order.adress %></td>
+        </tr>
+        <tr>
+          <td><strong>Postal code:</strong></td>
+          <td><%= @order.postal_code %></td>
+        </tr>
+        <tr>
+          <td><strong>City</strong></td>
+          <td><%= @order.city %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="span6">
+    <div class="well">
+      <h3>Order details</h3>
+      <table class="table table-striped">
+        <tr>
+          <th>Product</th>
+          <th>Amount</th>
+          <th>Price</th>
+        </tr>
+        <% @order.line_items.each do |line_item| %>
+          <tr>
+            <td><%= line_item.product.name %></td>
+            <td><%= line_item.amount %></td>
+            <td><%= number_to_currency(line_item.price) %></td>
+          </tr>
+        <% end %>
+        <tr>
+          <td></td>
+          <td><strong>Total</strong></td>
+          <td><%= number_to_currency(@order.total_price) %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
 
-<div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")),
-              orders_path, :class => 'btn'  %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_order_path(@order), :class => 'btn' %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              order_path(@order),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
+<div class="row">
+  <div class="span12">
+    <div class="form-actions">
+      <%= link_to "Back", orders_path, :class => 'btn'  %>
+      <%= link_to "Edit", edit_order_path(@order), :class => 'btn' %>
+      <%= link_to "Destroy", order_path(@order),
+                  :method => 'delete',
+                  :data => { :confirm => "Are you sure?" },
+                  :class => 'btn btn-danger' %>
+    </div>
+  </div>
 </div>
