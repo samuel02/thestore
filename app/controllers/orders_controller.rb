@@ -20,12 +20,16 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @order = Order.new
     @cart = current_cart
 
     if @cart.line_items.size <= 0
       redirect_to root_path, notice: 'You have no products in cart.' and return
     end
+
+    @customer = current_customer || Customer.new
+
+    @order = Order.new
+
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,9 +38,16 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(params[:order])
+    if current_customer
+      @customer = current_customer
+    else
+      redirect_to root_path, notice: 'You must be logged in order to place an order.' and return
+    end
+
+    @order = Order.new
     @cart = current_cart
 
+    @order.customer_id = @customer.id
     @order.add_items(@cart)
 
     respond_to do |format|
@@ -46,7 +57,7 @@ class OrdersController < ApplicationController
         format.html { redirect_to root_path, notice: 'Order was successfully created.' }
         format.json { render json: @order, status: :created, location: @order }
       else
-        @cart = current_cart
+        logger.info "@order.errors = #{@order.errors.inspect}"
         format.html { render action: "new" }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end

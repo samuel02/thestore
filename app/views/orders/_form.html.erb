@@ -1,43 +1,59 @@
-<%= form_for @order, :html => { :class => 'form-horizontal' } do |f| %>
-  <div class="control-group">
-    <%= f.label :first_name, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :first_name, :class => 'text_field' %>
+<h3 style="margin-top:0px">New account</h3>
+<%= form_for @customer, :html => { :class => 'form-horizontal' } do |f| %>
+  <fieldset>
+    <div class="control-group">
+      <%= f.label :first_name, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :first_name, :class => 'text_field' %>
+      </div>
     </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :last_name, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :last_name, :class => 'text_field' %>
+    <div class="control-group">
+      <%= f.label :last_name, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :last_name, :class => 'text_field' %>
+      </div>
     </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :email, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :email, :class => 'text_field' %>
+    <div class="control-group">
+      <%= f.label :email, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :email, :class => 'text_field' %>
+      </div>
     </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :adress, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :adress, :class => 'text_field' %>
+    <div class="control-group">
+      <%= f.label :address, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :address, :class => 'text_field' %>
+      </div>
     </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :postal_code, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :postal_code, :class => 'text_field' %>
+    <div class="control-group">
+      <%= f.label :postal_code, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :postal_code, :class => 'text_field' %>
+      </div>
     </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :city, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :city, :class => 'text_field' %>
+    <div class="control-group">
+      <%= f.label :city, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :city, :class => 'text_field' %>
+      </div>
     </div>
-  </div>
+    <hr>
+    <div class="control-group">
+      <%= f.label :password, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.password_field :password, :class => 'text_field' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :password_confirmation, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.password_field :city, :class => 'text_field' %>
+      </div>
+    </div>
 
-  <div class="form-actions">
-    <%= link_to "Continue shopping", root_path, :class => 'btn' %>
-    <%= f.submit nil, :class => 'btn btn-primary' %>
-  </div>
+    <div class="form-actions">
+      <%= link_to "Continue shopping", root_path, :class => 'btn' %>
+      <%= f.submit "Create account", :class => 'btn btn-primary' %>
+    </div>
+  </fieldset>
 <% end %>

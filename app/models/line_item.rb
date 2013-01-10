@@ -1,8 +1,7 @@
 class LineItem < ActiveRecord::Base
   attr_accessible :amount, :cart_id, :order_id, :product_id
 
-  validates_presence_of :cart_id,
-                        :amount,
+  validates_presence_of :amount,
                         :product_id
 
   belongs_to :cart

@@ -24,4 +24,7 @@ class Admin < ActiveRecord::Base
       self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
     end
   end
+
+  def admin?; true; end
+  def customer?; false; end
 end

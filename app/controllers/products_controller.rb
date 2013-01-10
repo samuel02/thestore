@@ -17,7 +17,7 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
 
-    if @current_admin
+    if @current_user && @current_user.admin?
       respond_to do |format|
         format.html # show.html.erb
         format.json { render json: @product }
