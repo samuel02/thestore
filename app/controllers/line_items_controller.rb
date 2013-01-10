@@ -13,11 +13,7 @@ class LineItemsController < ApplicationController
 
   def destroy
     product = Product.find(LineItem.find(params[:id]).product)
-    logger.info "product = #{product.inspect}"
-
     @line_item = @cart.remove_product(product)
-
-    logger.info "@line_item = #{@line_item.inspect}"
 
     if @line_item.amount <= 0
       @line_item.destroy

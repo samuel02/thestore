@@ -13,9 +13,7 @@ class Cart < ActiveRecord::Base
   end
 
   def remove_product(product)
-    logger.info "product = #{product.inspect}"
     item = line_items.find_by_product_id(product.id)
-    logger.info "item = #{item.inspect}"
     if item
       item.amount -= 1
     end
@@ -25,5 +23,4 @@ class Cart < ActiveRecord::Base
   def total_price
     line_items.sum(&:price)
   end
-
 end
