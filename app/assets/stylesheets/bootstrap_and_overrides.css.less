@@ -6,9 +6,10 @@
 @iconWhiteSpritePath: asset-path("twitter/bootstrap/glyphicons-halflings-white");
 
 // Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
-// Note: If you use asset_path() here, your compiled boostrap_and_overrides.css will not
+// Note: If you use asset_path() here, your compiled bootstrap_and_overrides.css will not
 //       have the proper paths. So for now we use the absolute path.
 @fontAwesomeEotPath: asset-path("fontawesome-webfont.eot");
+@fontAwesomeEotPath_iefix: asset-path("fontawesome-webfont.eot#iefix");
 @fontAwesomeWoffPath: asset-path("fontawesome-webfont.woff");
 @fontAwesomeTtfPath: asset-path("fontawesome-webfont.ttf");
 @fontAwesomeSvgPath: asset-path("fontawesome-webfont.svg");
@@ -19,12 +20,138 @@
 // Glyphicons
 //@import "twitter/bootstrap/sprites.less";
 
+// Your custom LESS stylesheets goes here
+//
+// Since bootstrap was imported above you have access to its mixins which
+// you may use and inherit here
+//
+// If you'd like to override bootstrap's own variables, you can do so here as well
+// See http://twitter.github.com/bootstrap/customize.html#variables for their names and documentation
+//
+// Example:
+// @linkColor: #ff0000;
+
 body {
-	padding-top:60px;
+  padding-top:60px;
 }
 
 footer {
-	padding:15px 0px;
-	border-top:1px solid @grayLighter;
-	margin-top:25px;
+  padding:15px 0px;
+  border-top:1px solid #eee;
+  margin-top:25px;
+}
+
+.rating span.star, .rating span.half-star, .rating span.empty-star {
+  font-family: FontAwesome;
+  font-weight: normal;
+  display: inline-block;
+  font-style: normal;
+}
+
+.rating {
+  font-size:16px;
+}
+
+.rating span.star::before {
+  content: "\f005";
+  color: #E3CF7A;
+  padding-right: 5px;
+}
+
+.rating span.half-star::before {
+  content: "\f089";
+  color: #E3CF7A;
+  padding-right: 5px;
+}
+
+.rating span.empty-star::before {
+  content: "\f006";
+  color: #999;
+  padding-right: 5px;
+}
+
+form {
+  div.star-rating {
+    cursor:pointer;
+    font-family: FontAwesome;
+    font-weight: normal;
+    display: inline-block;
+    font-style: normal;
+    font-size:20px;
+  }
+
+  div.rating-cancel, div.rating-cancel a {
+    display:none;
+  }
+
+  div.star-rating, div.star-rating a::before {
+    content: "\f006";
+    color: #999;
+    padding-right: 5px;
+  }
+  div.star-rating a{
+    display:block;
+    width:18px;
+    text-decoration:none;
+  }
+  div.star-rating-on a::before, div.star-rating-hover a::before {
+    content: "\f005";
+    color: #E3CF7A;
+  }
+
+  div.star-rating-on a, div.star-rating-hover a {
+    color: #E3CF7A;
+  }
+}
+
+.modal {
+
+  form {
+    margin-bottom:0px;
+
+    textarea {
+      width:516px;
+    }
+  }
+}
+
+.comments {
+
+  .well {
+    padding-bottom:5px;
+    min-height:75px;
+
+    .comment-details {
+      padding-left:15px;
+      text-align:right;
+
+      h5 {
+        margin-top:0px;
+        margin-bottom:0px;
+      }
+
+      .time {
+        font-style:italic;
+        display:block;
+      }
+
+      .rating {
+        display:block;
+        margin-right:-5px;
+      }
+    }
+
+    .reply-btn {
+      text-decoration: none;
+      font-size: 46px;
+      color: #333;
+      float: right;
+      position: relative;
+      right: -90px;
+      display: block;
+      height: 50px;
+      width: 50px;
+      line-height: 50px;
+    }
+  }
 }

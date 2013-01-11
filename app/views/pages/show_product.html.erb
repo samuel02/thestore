@@ -11,9 +11,20 @@
       <div class="span4">
         <h3 style="margin-top:0px">Description</h3>
         <p><%= @product.description %></p>
-        <p>
-          <strong>Price:</strong> <%= number_to_currency @product.price %>
-        </p>
+        <table class="table table-condensed">
+          <tr>
+            <td><strong>Price</strong></td>
+            <td><%= number_to_currency @product.price %></td>
+          </tr>
+          <tr>
+            <td><strong>In stock</strong></td>
+            <td><%= @product.quantity %> piece(s)</td>
+          </tr>
+          <tr>
+            <td><strong>Customer rating</strong></td>
+            <td><%= rating_stars @product.average_rating %></td>
+          </tr>
+        </table>
       </div>
       <div class="span4">
         <img src="<%= @product.image_url %>">
@@ -30,6 +41,28 @@
                       :method => 'post',
                       :class => "btn btn-primary" %>
         </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span8">
+        <div class="page-header">
+          <h3><i class="icon-comment"></i> Comments</h3>
+        </div>
+        <div class="comments">
+          <% if @product.comments.any? %>
+            <% @product.comments.each do |comment| %>
+              <% if comment.level == 0 %>
+                <%= render :partial => "pages/comment", :locals => { :comment => comment, :span => 8, :offset => 0, :level => 1 } %>
+              <% end %>
+            <% end %>
+          <% else %>
+            <p>No comments yet, add the first one!</p>
+          <% end %>
+        </div>
+        <hr>
+        <a href="#new-comment-modal" data-toggle="modal" class="btn btn-info pull-right">
+          <i class="icon-comment"></i> Add comment
+        </a>
       </div>
     </div>
   </div>
@@ -78,4 +111,36 @@
       <% end %>
     </div>
   </div>
+</div>
+
+<div class="modal hide" id="new-comment-modal">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>New comment</h3>
+  </div>
+  <%= form_for @comment do |f| %>
+    <div class="modal-body">
+      <fieldset>
+        <%= f.hidden_field :product_id, :value => @product.id %>
+        <div class="control-group">
+          <h5>What would you like to tell the world?</h5>
+          <div class="controls">
+            <%= f.text_area :content, :rows => 4, :placeholder => "Your comment here..." %>
+          </div>
+        </div>
+        <div class="control-group">
+            <h5>Rate the product!</h5>
+            <%= f.radio_button :rating, 1, :checked => "checked", :class => "star {half:true}" %>
+            <%= f.radio_button :rating, 2, :class => "star {half:true}" %>
+            <%= f.radio_button :rating, 3, :class => "star {half:true}" %>
+            <%= f.radio_button :rating, 4, :class => "star {half:true}" %>
+            <%= f.radio_button :rating, 5, :class => "star {half:true}" %>
+        </div>
+      </fieldset>
+    </div>
+    <div class="modal-footer">
+      <a href="#" data-dismiss="modal" class="btn">Close</a>
+      <%= f.submit "Add comment", :class => "btn btn-primary" %>
+    </div>
+  <% end %>
 </div>

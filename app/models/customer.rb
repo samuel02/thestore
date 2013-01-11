@@ -24,6 +24,7 @@ class Customer < ActiveRecord::Base
   validates_format_of :email, :with => %r/\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/
 
   has_many :orders
+  has_many :comments
 
   def self.authenticate(email, password)
     customer = find_by_email(email)

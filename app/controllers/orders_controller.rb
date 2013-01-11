@@ -38,8 +38,8 @@ class OrdersController < ApplicationController
   end
 
   def create
-    if current_customer
-      @customer = current_customer
+    if @current_user && @current_user.customer?
+      @customer = @current_user
     else
       redirect_to root_path, notice: 'You must be logged in order to place an order.' and return
     end
