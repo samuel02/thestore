@@ -1,12 +1,10 @@
 class AvailabilityValidator < ActiveModel::Validator
   def validate(record)
-    unless product_available?(record)
-      record.errors.add :base, "We currently don't have enough of #{item.product.name} in stock."
+    record.line_items.each do |item|
+      unless item.product.available?(item.amount)
+        record.errors[:base] << "We currently don't have enough of #{item.product.name} in stock."
+      end
     end
-  end
-
-  def product_available?(record)
-    record.line_items.any? { |item| item.product.available?(item.amount) }
   end
 end
 
