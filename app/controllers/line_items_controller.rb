@@ -1,12 +1,13 @@
 class LineItemsController < ApplicationController
 
   def create
+    session[:return_to] ||= request.referer
     product = Product.find(params[:product_id])
     @line_item = @cart.add_product(product)
 
     respond_to do |format|
       @line_item.save
-      format.html { redirect_to :root }
+      format.html { redirect_to session[:return_to] }
     end
   end
 
