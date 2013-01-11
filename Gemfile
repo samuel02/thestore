@@ -23,3 +23,5 @@ end
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', :require => 'bcrypt'
+
+gem 'immigrant'
