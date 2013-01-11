@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130111151605) do
+ActiveRecord::Schema.define(:version => 20130111202835) do
 
   create_table "admins", :force => true do |t|
     t.string   "email"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(:version => 20130111151605) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
+
+  add_index "admins", ["email"], :name => "index_admins_on_email", :unique => true
 
   create_table "carts", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -37,6 +39,10 @@ ActiveRecord::Schema.define(:version => 20130111151605) do
     t.integer  "level"
   end
 
+  add_index "comments", ["customer_id"], :name => "index_comments_on_customer_id"
+  add_index "comments", ["parent_id"], :name => "index_comments_on_parent_id"
+  add_index "comments", ["product_id"], :name => "index_comments_on_product_id"
+
   create_table "customers", :force => true do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -50,6 +56,8 @@ ActiveRecord::Schema.define(:version => 20130111151605) do
     t.datetime "updated_at",    :null => false
   end
 
+  add_index "customers", ["email"], :name => "index_customers_on_email", :unique => true
+
   create_table "line_items", :force => true do |t|
     t.integer  "product_id"
     t.integer  "order_id"
@@ -59,11 +67,17 @@ ActiveRecord::Schema.define(:version => 20130111151605) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "line_items", ["cart_id"], :name => "index_line_items_on_cart_id"
+  add_index "line_items", ["order_id"], :name => "index_line_items_on_order_id"
+  add_index "line_items", ["product_id"], :name => "index_line_items_on_product_id"
+
   create_table "orders", :force => true do |t|
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "customer_id"
   end
+
+  add_index "orders", ["customer_id"], :name => "index_orders_on_customer_id"
 
   create_table "products", :force => true do |t|
     t.string   "name"
