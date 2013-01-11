@@ -3,38 +3,38 @@
 </div>
 
 <div class="row">
-  <div class="span6">
+  <div class="span4">
     <div class="well">
       <h3>Customer info</h3>
       <table class="table table-striped">
         <tr>
           <td><strong>First name</strong></td>
-          <td><%= @order.first_name %></td>
+          <td><%= @order.customer.first_name %></td>
         </tr>
         <tr>
           <td><strong>Last name</strong></td>
-          <td><%= @order.last_name %></td>
+          <td><%= @order.customer.last_name %></td>
         </tr>
         <tr>
           <td><strong>Email</strong></td>
-          <td><%= @order.email %></td>
+          <td><%= @order.customer.email %></td>
         </tr>
         <tr>
           <td><strong>Address</strong></td>
-          <td><%= @order.adress %></td>
+          <td><%= @order.customer.address %></td>
         </tr>
         <tr>
           <td><strong>Postal code:</strong></td>
-          <td><%= @order.postal_code %></td>
+          <td><%= @order.customer.postal_code %></td>
         </tr>
         <tr>
           <td><strong>City</strong></td>
-          <td><%= @order.city %></td>
+          <td><%= @order.customer.city %></td>
         </tr>
       </table>
     </div>
   </div>
-  <div class="span6">
+  <div class="span4">
     <div class="well">
       <h3>Order details</h3>
       <table class="table table-striped">

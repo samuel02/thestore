@@ -5,8 +5,7 @@
   <thead>
     <tr>
       <th>Id</th>
-      <th>First name</th>
-      <th>Last name</th>
+      <th>Name</th>
       <th>Email</th>
       <th>Adress</th>
       <th>Postal code</th>
@@ -20,12 +19,11 @@
     <% @orders.each do |order| %>
       <tr>
         <td><%= order.id %></td>
-        <td><%= order.first_name %></td>
-        <td><%= order.last_name %></td>
-        <td><%= order.email %></td>
-        <td><%= order.adress %></td>
-        <td><%= order.postal_code %></td>
-        <td><%= order.city %></td>
+        <td><%= "#{order.customer.first_name} #{order.customer.last_name}" %></td>
+        <td><%= order.customer.email %></td>
+        <td><%= order.customer.address %></td>
+        <td><%= order.customer.postal_code %></td>
+        <td><%= order.customer.city %></td>
         <td><%= order.line_items.count %></td>
         <td><%= number_to_currency(order.total_price) %></td>
         <td>
