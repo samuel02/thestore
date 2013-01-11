@@ -23,12 +23,12 @@ class Comment < ActiveRecord::Base
   end
 
   def set_level
-    level = count_levels_to_root(self)
+    self.level = count_levels_to_root(self)
   end
 
   private
 
-  def count_levels_to_root(comment, start)
+  def count_levels_to_root(comment)
     if comment.has_no_parent?
       return 0
     else

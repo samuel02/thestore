@@ -39,7 +39,7 @@
                   <%= link_to "New Admin", new_admin_path  %>
                 </li>
                 <li>
-                  <%= link_to "Log Out (#{@current_user.email})", logout_path  %>
+                  <%= link_to "Log Out", logout_path  %>
                 </li>
               </ul>
             <% else %>
@@ -52,7 +52,7 @@
                     <%= link_to "My account", customer_path(@current_user) %>
                   </li>
                   <li>
-                    <%= link_to "Log Out (#{@current_user.email})", logout_path  %>
+                    <%= link_to "Log Out", logout_path  %>
                   </li>
                 <% else %>
                   <li>

@@ -1,0 +1,32 @@
+<div class="modal hide fade" id="comment-modal">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>New comment</h3>
+  </div>
+  <%= form_for comment do |f| %>
+    <div class="modal-body">
+      <fieldset>
+        <%= f.hidden_field :parent_id, :value => parent_id %>
+        <%= f.hidden_field :product_id, :value => product_id %>
+        <div class="control-group">
+          <h5>What would you like to tell the world?</h5>
+          <div class="controls">
+            <%= f.text_area :content, :rows => 4, :placeholder => "Your comment here..." %>
+          </div>
+        </div>
+        <div class="control-group">
+            <h5>Rate the product!</h5>
+            <%= f.radio_button :rating, 1, :checked => "checked", :class => "star {half:true}" %>
+            <%= f.radio_button :rating, 2, :class => "star {half:true}" %>
+            <%= f.radio_button :rating, 3, :class => "star {half:true}" %>
+            <%= f.radio_button :rating, 4, :class => "star {half:true}" %>
+            <%= f.radio_button :rating, 5, :class => "star {half:true}" %>
+        </div>
+      </fieldset>
+    </div>
+    <div class="modal-footer">
+      <a href="#" data-dismiss="modal" class="btn">Close</a>
+      <%= f.submit "Add comment", :class => "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

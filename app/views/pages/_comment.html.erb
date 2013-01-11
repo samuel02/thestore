@@ -1,14 +1,21 @@
 <div class="row">
   <div class="span<%= span %> offset<%= offset %>">
     <div class="well">
-      <p class="pull-left">
-        <%= comment.content %>
-      </p>
-      <a href="#" class="reply-btn"><i class="icon-reply"></i></a>
-      <div class="comment-details pull-right">
-        <h5><%= "#{comment.customer.first_name} #{comment.customer.last_name}" %></h5>
-        <span class="time"><%= comment.created_at.strftime("%d-%m-%Y %H:%M") %></span>
-        <%= rating_stars comment.rating %>
+      <div class="comment-content">
+        <p class="pull-left">
+          <%= comment.content %>
+        </p>
+        <div class="comment-details pull-right">
+          <h5><%= "#{comment.customer.first_name} #{comment.customer.last_name}" %></h5>
+          <span class="time"><%= comment.created_at.strftime("%d-%m-%Y %H:%M") %></span>
+          <%= rating_stars comment.rating %>
+        </div>
+      </div>
+      <div class="comment-footer">
+        <%= link_to raw("<i class=\"icon-reply\"></i> Reply"),
+                    new_comment_path(:parent_id => comment.id, :product_id => @product.id),
+                    :remote => true %>
+        <a href="#"></a>
       </div>
     </div>
   </div>

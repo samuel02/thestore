@@ -1,0 +1,9 @@
+$(function(){
+  $modal = $("<%= escape_javascript( render :partial => "new_comment_modal", :locals => { :comment => @comment, :parent_id => @parent_id, :product_id => @product_id} )%>");
+
+  $('body').append($modal);
+
+  $modal.modal('show');
+
+  $('.star').rating();
+});
