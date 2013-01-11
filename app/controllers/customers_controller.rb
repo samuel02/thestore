@@ -9,9 +9,12 @@ class CustomersController < ApplicationController
     @customer = Customer.new(params[:customer])
 
     if @customer.save
+      @customer = Customer.authenticate(params[:customer][:email], params[:customer][:password])
+      session[:customer_id] = @customer.id
       redirect_to new_order_path
     else
-      render 'order/new'
+      @order = Order.new
+      render 'orders/new'
     end
   end
 

@@ -16,6 +16,24 @@
   </div>
 </div>
 <% end %>
+<% if @customer.errors.any? %>
+<div class="row">
+  <div class="span8">
+    <div class="alert alert-block alert-error">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <h4>We're so sorry</h4>
+      <p style="padding-top:5px;padding-bottom:5px;">
+        We encountered some issues when trying to process your order:
+      </p>
+      <ul>
+        <% @customer.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+<% end %>
 
 <div class="page-header">
   <h1>Checkout</h1>
@@ -34,9 +52,9 @@
 <div class="row">
   <div class="span4">
     <% if current_customer %>
-      <%= render :partial => 'customer_info' %>
+      <%= render :partial => 'orders/customer_info' %>
     <% else %>
-      <%= render :partial => 'form' %>
+      <%= render :partial => 'orders/form' %>
     <% end %>
   </div>
   <div class="span4">
