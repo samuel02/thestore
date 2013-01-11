@@ -1,7 +1,7 @@
 class CartsController < ApplicationController
 
   def destroy
-    Cart.destroy(current_cart)
+    Cart.destroy(@cart)
     redirect_to root_path
   end
 

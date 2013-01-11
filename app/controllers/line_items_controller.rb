@@ -1,5 +1,4 @@
 class LineItemsController < ApplicationController
-  before_filter :init_cart
 
   def create
     product = Product.find(params[:product_id])
@@ -24,11 +23,5 @@ class LineItemsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to :root }
     end
-  end
-
-  private
-
-  def init_cart
-    @cart = current_cart
   end
 end

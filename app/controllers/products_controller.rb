@@ -23,7 +23,6 @@ class ProductsController < ApplicationController
         format.json { render json: @product }
       end
     else
-      @cart = current_cart
       @comment = Comment.new
       respond_to do |format|
         format.html { render "pages/show_product" }

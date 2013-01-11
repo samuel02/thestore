@@ -1,0 +1,41 @@
+  <div id="cart-template">
+    <h3 class="title">Your shopping cart</h3>
+    <div class="content">
+      <% if @cart.line_items.size > 0 %>
+        <table class="table table-striped">
+          <tr>
+          </tr>
+          <% @cart.line_items.each do |line_item| %>
+            <tr>
+              <td><%= line_item.product.name %></td>
+              <td>&times; <%= line_item.amount %></td>
+              <td><%= number_to_currency(line_item.price) %></td>
+              <td>
+                <%= link_to raw("<i class=\"icon-remove\"></i>"),
+                            line_item_path(line_item),
+                            :method => 'delete',
+                            :class => "" %>
+              </td>
+            </tr>
+          <% end %>
+          <tr>
+            <td></td>
+            <td><strong>Total</strong></td>
+            <td><%= number_to_currency(@cart.total_price) %></td>
+            <td></td>
+          </tr>
+        </table>
+        <div>
+          <%= link_to raw("<i class=\"icon-remove\"></i> Empty Cart"),
+                      '/empty_cart',
+                      class: "btn-special pull-left empty-cart" %>
+          <%= link_to raw("<i class=\"icon-shopping-cart\"></i> Checkout"),
+                      new_order_path,
+                      class: "btn-special pull-right checkout" %>
+        </div>
+      <% else %>
+        <p>No products in cart, add a product!</p>
+      <% end %>
+    </div>
+  </div>
+</div>

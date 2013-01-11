@@ -20,8 +20,6 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @cart = current_cart
-
     if @cart.line_items.size <= 0
       redirect_to root_path, notice: 'You have no products in cart.' and return
     end
@@ -45,7 +43,6 @@ class OrdersController < ApplicationController
     end
 
     @order = Order.new
-    @cart = current_cart
 
     @order.customer_id = @customer.id
     @order.add_items(@cart)

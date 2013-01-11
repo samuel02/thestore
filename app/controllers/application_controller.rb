@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
                 :current_cart,
                 :current_customer,
                 :authorize_customer
-  before_filter :current_user
+  before_filter :current_user, :current_cart
 
   private
 
@@ -25,9 +25,11 @@ class ApplicationController < ActionController::Base
     @current_user = current_admin || current_customer
   end
 
-
-
   def current_cart
+    @cart ||= init_cart
+  end
+
+  def init_cart
     begin
       cart = Cart.find(session[:cart_id])
     rescue ActiveRecord::RecordNotFound
