@@ -11,12 +11,15 @@
           <%= rating_stars comment.rating %>
         </div>
       </div>
-      <div class="comment-footer">
-        <%= link_to raw("<i class=\"icon-reply\"></i> Reply"),
-                    new_comment_path(:parent_id => comment.id, :product_id => @product.id),
-                    :remote => true %>
-        <a href="#"></a>
-      </div>
+      <% if @current_user && @current_user.customer? %>
+        <div class="comment-footer">
+          <%= link_to raw("<i class=\"icon-reply\"></i> Reply"),
+                      new_comment_path(
+                        :parent_id => comment.id,
+                        :product_id => @product.id),
+                      :remote => true %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
