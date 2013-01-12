@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
   def new
-    session[:return_to] ||= request.url
   end
 
   def create
@@ -9,10 +8,10 @@ class SessionsController < ApplicationController
 
     if admin
       session[:admin_id] = admin.id
-      redirect_to session[:return_to]
+      redirect_to products_path
     elsif customer
       session[:customer_id] = customer.id
-      redirect_to session[:return_to]
+      redirect_to root_url
     else
       render "new"
     end
